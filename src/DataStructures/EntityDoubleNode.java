@@ -24,6 +24,13 @@ public class EntityDoubleNode extends EntityNode{
 	public EntityDoubleNode get_next() {
 		return (EntityDoubleNode)(super.get_next());
 	}
+	
+	/**
+	 * @param _next the _next to set
+	 */
+	public void set_next(EntityDoubleNode _next) {
+		super.set_next(_next);
+	}
 
 	/**
 	 * @return the _prev
