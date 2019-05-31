@@ -33,6 +33,26 @@ public class DoubleLinkedList {
 		node.reset_prev();
 	}
 	
+	/**
+	 * Deletes the specified node from the list.
+	 * @return A reference to the EntityDoubleNode that was removed from the list.
+	 */
+	public EntityDoubleNode delete(EntityDoubleNode node) {
+		if(node.get_prev()!=null) {
+			node.get_prev().set_next(node.get_next());
+		}else {
+			this.set_head(node.get_next());
+		}
+		
+		if(node.get_next()!=null) {
+			node.get_next().set_prev(node.get_prev());
+		}
+		
+		node.reset_next();
+		node.reset_prev();
+		
+		return node;
+	}
 	
 	/**
 	 * 
@@ -41,7 +61,7 @@ public class DoubleLinkedList {
 	public EntityDoubleNode findMax() {
 		EntityDoubleNode max=this.get_head();
 		
-		for(EntityDoubleNode cur=max;cur!=null;cur=(EntityDoubleNode) cur.get_next()) {
+		for(EntityDoubleNode cur=max;cur!=null;cur=cur.get_next()) {
 			if(cur.getValue()>max.getValue()) {
 				max=cur;
 			}

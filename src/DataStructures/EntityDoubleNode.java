@@ -16,6 +16,14 @@ public class EntityDoubleNode extends EntityNode{
 		super(value);
 		this._prev=null;
 	}
+	
+	/**
+	 * @return the _next
+	 */
+	@Override
+	public EntityDoubleNode get_next() {
+		return (EntityDoubleNode)(super.get_next());
+	}
 
 	/**
 	 * @return the _prev
