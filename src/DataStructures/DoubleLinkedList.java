@@ -4,7 +4,7 @@
 package DataStructures;
 
 /**
- * @author ilya1
+ * @author ilya Livshits
  *
  */
 public class DoubleLinkedList {
