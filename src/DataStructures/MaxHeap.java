@@ -2,6 +2,8 @@
  * 
  */
 package DataStructures;
+import java.util.*;  
+import Interfaces.*;
 
 /**
  * @author ilya Livshits
@@ -10,18 +12,14 @@ package DataStructures;
 
 //Java program to implement Max Heap 
 public class MaxHeap { 
-	private int[] heap; 
-	private int heapSize; 
-	private int maxsize; 
+	private List<Entity> heap;  
 
 	// Constructor to initialize an 
 	// empty max heap with given maximum 
 	// capacity. 
-	public MaxHeap(int maxsize) 
+	public MaxHeap() 
 	{ 
-		this.maxsize = maxsize; 
-		this.heapSize = 0; 
-		this.heap = new int[this.maxsize]; 
+		this.heap = new ArrayList<Entity>(); 
 	} 
 
 	// Returns position of parent 
@@ -43,10 +41,7 @@ public class MaxHeap {
 
 	private void exchange(int fpos, int spos) 
 	{ 
-		int tmp; 
-		tmp = this.heap[fpos]; 
-		this.heap[fpos] = this.heap[spos]; 
-		this.heap[spos] = tmp; 
+		Collections.swap(this.heap, fpos, spos);
 	} 
 
 	// A recursive function to max heapify the given 
@@ -57,15 +52,15 @@ public class MaxHeap {
 	{ 
 		int left =this.leftChild(pos);
 		int right = this.rightChild(pos);
-		int n = this.heapSize;
+		int n = this.heap.size();
 		
 		int largest = pos;
 		
-		if(left<n && this.heap[left]>this.heap[pos]) {
+		if(left<n && this.heap.get(left).getValue()>this.heap.get(pos).getValue()) {
 			largest=left;
 		}
 		
-		if(right<n && this.heap[right]>this.heap[largest]) {
+		if(right<n && this.heap.get(right).getValue()>this.heap.get(largest).getValue()) {
 			largest=right;
 		}
 		
@@ -84,37 +79,31 @@ public class MaxHeap {
 		
 		int parent=this.parent(pos);
 		
-		if(this.heap[parent] < this.heap[pos]) {
+		if(this.heap.get(parent).getValue() < this.heap.get(pos).getValue()) {
 			this.exchange(parent, pos);
 			this.heapifyUp(pos);
 		}
 	}
 
 	//Inserts a new element to max heap 
-	public void insert(int element) 
+	public void insert(Entity element) 
 	{ 
-		this.heapSize++;
-		
-//		if(this.heapSize>this.maxsize) {  EXTEND THE HEAP ARRAY
-//			this.heap=extend(this.heap);
-//			this.maxsize=this.heap.length;
-//		}
-		this.heap[this.heapSize-1]=element;
-		this.heapifyUp(this.heapSize-1);
+		this.heap.add(element);
+		this.heapifyUp(this.heap.size()-1);
 		
 	} 
 
 
 	// Remove an element from max heap 
-	public int extractMax() 
+	public Entity extractMax() 
 	{ 
-		if(this.heapSize<1) {
-			return -1; //Should be ERROR - heap underflow
+		if(this.heap.isEmpty() == true) {
+			return null;
 		}
 		
-		int max = this.heap[0];
-		this.heap[0]=this.heap[this.heapSize-1];
-		this.heapSize--;
+		Entity max = this.heap.get(0);
+		this.heap.set(0, this.heap.get(this.heap.size()-1));
+		this.heap.remove(this.heap.size()-1);
 		this.heapifyDown(0);
 		
 		return max;

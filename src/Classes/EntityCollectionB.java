@@ -11,21 +11,21 @@ import DataStructures.*;
  *
  */
 public class EntityCollectionB implements EntityCollection{
-
+	private MaxHeap maxHeap;
 	/**
 	 * 
 	 */
 	public EntityCollectionB() {
-		// TODO Auto-generated constructor stub
+		this.maxHeap=new MaxHeap();
 	}
 	
 	
 	public void add(Entity entity) {
-		EntityDoubleNode entDoubleNode = new EntityDoubleNode(entity.getValue());
+		this.maxHeap.insert(entity);
 	}
 
 	public Entity removeMaxValue() {
-		return null;
+		return this.maxHeap.extractMax();
 	}
 
 }

@@ -1,5 +1,3 @@
-
-
 /**
  * 
  */
@@ -13,36 +11,24 @@ import DataStructures.*;
  *
  */
 public class EntityCollectionA implements EntityCollection{
-	private Stack primaryStack;
-	private Stack secondaryStack;
-	
-	
+	private DoubleLinkedList _doubleLinkedList;
 	
 	/**
-	 * @param stackPrimary
-	 * @param stackSecondary
+	 * 
 	 */
 	public EntityCollectionA() {
-		this.primaryStack = new Stack();
-		this.secondaryStack = new Stack();
+		this._doubleLinkedList=new DoubleLinkedList();
 	}
-
+	
+	
 	public void add(Entity entity) {
-		EntityNode entNode = new EntityNode(entity.getValue());
-		
-		while(!(this.primaryStack.isEmpty()) && (entNode.getValue() <= this.primaryStack.top()) ) {
-			this.secondaryStack.push(this.primaryStack.pop());
-		}
-		
-		this.primaryStack.push(entNode);
-		
-		while(!(this.secondaryStack.isEmpty())) {
-			this.primaryStack.push(this.secondaryStack.pop());
-		}
+		EntityDoubleNode entDoubleNode = new EntityDoubleNode(entity.getValue());
+		this._doubleLinkedList.insert(entDoubleNode);
 	}
 
 	public Entity removeMaxValue() {
-		return this.primaryStack.pop();
+		EntityDoubleNode entDoubleNode=this._doubleLinkedList.findMax();
+		entDoubleNode=this._doubleLinkedList.delete(entDoubleNode);
+		return entDoubleNode;
 	}
-	
 }
