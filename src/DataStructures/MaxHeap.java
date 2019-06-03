@@ -81,7 +81,7 @@ public class MaxHeap {
 		
 		if(this.heap.get(parent).getValue() < this.heap.get(pos).getValue()) {
 			this.exchange(parent, pos);
-			this.heapifyUp(pos);
+			this.heapifyUp(parent);
 		}
 	}
 

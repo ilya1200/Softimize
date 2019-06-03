@@ -36,8 +36,13 @@ public class DoubleLinkedList {
 	/**
 	 * Deletes the specified node from the list.
 	 * @return A reference to the EntityDoubleNode that was removed from the list.
+	 * @throws IllegalArgumentException if node is null
 	 */
 	public EntityDoubleNode delete(EntityDoubleNode node) {
+		if(node==null) {
+			throw new IllegalArgumentException("node must not be null");
+		}
+		
 		if(node.get_prev()!=null) {
 			node.get_prev().set_next(node.get_next());
 		}else {
@@ -57,9 +62,14 @@ public class DoubleLinkedList {
 	/**
 	 * 
 	 * @return A reference to the EntityNode with the max value
+	 * @throws NullPointerException if the list is empty
 	 */
 	public EntityDoubleNode findMax() {
 		EntityDoubleNode max=this.get_head();
+		
+		if(this.isEmpty()) {
+			throw new NullPointerException("The list is empty");
+		}
 		
 		for(EntityDoubleNode cur=max;cur!=null;cur=cur.get_next()) {
 			if(cur.getValue()>max.getValue()) {
@@ -68,6 +78,13 @@ public class DoubleLinkedList {
 		}
 		
 		return max;
+	}
+	
+	/**
+	 * @return the isEmpty
+	 */
+	private boolean isEmpty() {
+		return this.get_head()==null;
 	}
 	
 	

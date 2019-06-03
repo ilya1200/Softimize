@@ -42,10 +42,14 @@ public class Stack {
 	
 	/**
 	 * @return the value of the top EntityNode
+	 * @throws IllegalArgumentException if Stack is Empty
 	 */
 	public int top() {
-		int value = this.get_head().getValue();
-		return value;
+		if(!this.isEmpty()) {
+			int value = this.get_head().getValue();
+			return value;	
+		}
+		throw new NullPointerException("The Stack is Empty.");
 	}
 	
 
