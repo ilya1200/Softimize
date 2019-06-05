@@ -1,4 +1,5 @@
 import mTests.*;
+import Classes.*;
 
 /** 
  * 
@@ -15,6 +16,10 @@ public class Entities {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		EntityCollectionA useCaseA=new EntityCollectionA();
+		EntityCollectionB useCaseB=new EntityCollectionB();
+		EntityCollectionC useCaseC=new EntityCollectionC();
+		
 		System.out.println("::  Entities  ::");
 		EntityNodeTest.testEntityNode();
 		StackTest.testStack();
